@@ -1,4 +1,4 @@
-#!/usr/bin/python2.5
+#!/usr/bin/env python
 
 # Online Python Tutor
 # Copyright (C) 2010-2011 Philip J. Guo (philip@pgbovine.net)
