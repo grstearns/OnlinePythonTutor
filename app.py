@@ -2,13 +2,9 @@ from flask import Flask
 from flask import request
 from flask import render_template
 
-
-# import web_finalizer
-# from ..lib import web_finalizer
 import lib.web_finalizer
 
 app = Flask(__name__)
-
 
 
 @app.route('/execute', methods=['POST'])
@@ -18,9 +14,11 @@ def execute():
   return log
 
 
+
 @app.route('/tutor.html')
 def tutor():
   return render_template('tutor.html')
+
 
 
 @app.route('/')
@@ -29,11 +27,6 @@ def root():
 
 
 
-
-
 if __name__ == '__main__':
     app.debug = True
     app.run()
-
-
-

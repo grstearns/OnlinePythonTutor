@@ -1,22 +1,15 @@
 import demjson
-
 import lib.pg_logger
 
 
 LOG_QUERIES = False # don't do logging for now
-
-# class web_finalizer(object):
-#   # """docstring for web_finalizer"""
-#   # def __init__(self, arg):
-#   #   super(web_finalizer, self).__init__()
-#   #   self.arg = arg
 
 
 def web_finalizer(output_lst):
   # use compactly=False to produce human-readable JSON,
   # except at the expense of being a LARGER download
   output_json = demjson.encode(output_lst, compactly=True)
-
+  
   # query logging is optional
   if LOG_QUERIES:
     # just to be paranoid, don't croak the whole program just
@@ -30,7 +23,7 @@ def web_finalizer(output_lst):
         evt = output_lst[-1]['event']
         if evt == 'exception' or evt == 'uncaught_exception':
           had_error = True
-
+  
       (con, cur) = db_common.db_connect()
       cur.execute("INSERT INTO query_log VALUES (NULL, ?, ?, ?, ?, ?)",
                   (int(time.time()),
