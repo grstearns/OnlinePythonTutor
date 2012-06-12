@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import render_template
 
 import pg_logger
 import demjson
@@ -23,11 +24,14 @@ def execute():
   return log
 
 
+@app.route('/tutor')
+def tutor():
+  return render_template('tutor.html')
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def root():
+  return render_template('index.html')
 
 
 LOG_QUERIES = False # don't do logging for now

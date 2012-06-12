@@ -26,39 +26,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <head>
   <title>Online Python Tutor</title>
 
-<!-- jQuery 1.6.0 -->
+  <!-- jQuery 1.6.0 -->
 
-<!-- local version for offline testing -->
-<script type="text/javascript" src="jquery.min.js"></script>
+  <!-- local version for offline testing -->
+  <script type="text/javascript" src="static/jquery.min.js"></script>
 
-<!-- online version hosted by Google -->
-<!--
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
- -->
+  <!-- online version hosted by Google -->
+  <!--
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+   -->
 
 
-<!-- load these local files only when localTesting == true 
+  <!-- load these local files only when localTesting == true 
+  <script type="text/javascript" src="mock-data.js"></script> 
+  -->
 
-<script type="text/javascript" src="mock-data.js"></script> 
+  <script type="text/javascript" src="static/jquery.ba-bbq.min.js"></script>
 
--->
+  <script type="text/javascript" src="static/jquery.textarea.js"></script>
 
-<script type="text/javascript" src="jquery.ba-bbq.min.js"></script>
+  <!-- disable autogrow for simplicity
+    <script type="text/javascript" src="jquery.autogrow.js"></script>
+   -->
 
-<script type="text/javascript" src="jquery.textarea.js"></script>
+  <!-- jsPlumb library for rendering connectors -->
+  <script type="text/javascript" src="static/jquery.jsPlumb-1.3.3-all-min.js "></script>
 
-<!-- disable autogrow for simplicity
-  <script type="text/javascript" src="jquery.autogrow.js"></script>
- -->
+  <!-- my own code -->
+  <script type="text/javascript" src="static/edu-python.js"></script>
+  <script type="text/javascript" src="static/edu-python-tutor.js"></script>
 
-<!-- jsPlumb library for rendering connectors -->
-<script type="text/javascript" src="jquery.jsPlumb-1.3.3-all-min.js "></script>
-
-<!-- my own code -->
-<script type="text/javascript" src="edu-python.js"></script>
-<script type="text/javascript" src="edu-python-tutor.js"></script>
-
-<link rel="stylesheet" href="edu-python.css"/>
+  <link rel="stylesheet" href="static/edu-python.css"/>
 
 </head>
 
