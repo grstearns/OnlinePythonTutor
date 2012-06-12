@@ -54,7 +54,7 @@ def web_finalizer(output_lst):
   # use compactly=False to produce human-readable JSON,
   # except at the expense of being a LARGER download
   output_json = demjson.encode(output_lst, compactly=True)
-
+  
   # query logging is optional
   if LOG_QUERIES:
     # just to be paranoid, don't croak the whole program just
@@ -68,7 +68,7 @@ def web_finalizer(output_lst):
         evt = output_lst[-1]['event']
         if evt == 'exception' or evt == 'uncaught_exception':
           had_error = True
-
+  
       (con, cur) = db_common.db_connect()
       cur.execute("INSERT INTO query_log VALUES (NULL, ?, ?, ?, ?, ?)",
                   (int(time.time()),
@@ -81,16 +81,15 @@ def web_finalizer(output_lst):
     except:
       # haha this is bad form, but silently fail on error :)
       pass
-
+  
   # Crucial first line to make sure that Apache serves this data
   # correctly - DON'T FORGET THE EXTRA NEWLINES!!!:
   print "Content-type: text/plain; charset=iso-8859-1\n\n"
   print output_json
 
 
-form = cgi.FieldStorage()
-user_script = form['user_script'].value
-if 'max_instructions' in form:
-  pg_logger.set_max_executed_lines(int(form['max_instructions'].value))
-
+# form = cgi.FieldStorage()
+# user_script = form['user_script'].value
+# if 'max_instructions' in form:
+pg_logger.set_max_executed_lines(2000000)
 pg_logger.exec_script_str(user_script, web_finalizer)
