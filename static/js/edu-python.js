@@ -183,7 +183,7 @@ function updateOutput() {
     }
   }
   else {
-    $("#vcrControls #curInstr").html("About to do step " + (curInstr + 1) + " of " + (totalInstrs-1));
+    $("#vcrControls #curInstr").html((curInstr + 1) + " of " + (totalInstrs-1));
   }
 
   $("#vcrControls #jmpFirstInstr").attr("disabled", false);
@@ -436,7 +436,6 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
   // TODO: figure out how to do this using CSS in a robust way!
   $(vizDiv).html('<table id="stackHeapTable"><tr><td id="stack_td"><div id="stack"></div></td><td id="heap_td"><div id="heap"></div></td></tr></table>');
 
-  $(vizDiv + " #stack").append('<div id="stackHeader">Stack grows <select id="stack_growth_selector"><option>down</option><option>up</option></select></div>');
 
   // select a state based on stackGrowsDown global variable:
   if (stackGrowsDown) {
@@ -770,11 +769,6 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
     }
 
   }
-
-  
-  // prepend heap header after all the dust settles:
-  $(vizDiv + ' #heap').prepend('<div id="heapHeader">Heap</div>');
-
 
   // finally connect stack variables to heap objects via connectors
   for (varID in connectionEndpointIDs) {

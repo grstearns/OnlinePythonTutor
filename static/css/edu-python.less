@@ -58,12 +58,17 @@ Complementary Color:
 
 */
 
-
 body {
+  margin:0;
+  padding:0;
   background-color: white;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
+  background-color:#efefef;
 
+
+  * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  .half-width {position:relative; float:left; margin:0px; width:50%; height:100%;}
 
   a {
     color: #3D58A2;
@@ -90,6 +95,56 @@ body {
 }
 
 
+.frame {
+  background:#fff;
+  border: 1px solid #ADADAD;
+  box-shadow: inset 0 1px 3px #E4E4E4;
+  width:98%;
+  min-height:200px;
+  margin:5px 1%;
+}
+
+.frame-header {
+  
+  margin-top: 10px;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  width:98%; 
+  height: 32px;
+  margin:10px 1% 0px 1%;
+  
+  background-image: -webkit-linear-gradient(top,white,#E0E0E0 75%,#F0F0F0);
+  background-image: -moz-linear-gradient(top,white,#E0E0E0 75%,#F0F0F0);
+  background-image: -ms-linear-gradient(top,white,#E0E0E0 75%,#F0F0F0);
+  background-image: -o-linear-gradient(top,white,#E0E0E0 75%,#F0F0F0);
+  background-image: linear-gradient(top,white,#E0E0E0 75%,#F0F0F0);
+  
+  h3 {
+    float:left;
+    font-family: Helvetica,Arial,Verdana,sans-serif;
+    color: #777;
+    font-size: 14px;
+    line-height:32px;
+    margin:0 10px;
+  }
+  
+  .pull-right {
+    float:right;
+    margin: 3px 10px 0px 0px;
+  }
+  
+}
+
+#header {
+  height:44px;
+  background:#3D668F url(../images/top-bg.png) repeat-x;
+  
+  h1 {
+    margin:0; padding:0px 10px;
+    color:#fff; font-weight:300; font-size:18px; line-height:44px; 
+    text-shadow: 1px 1px 1px #111
+  }
+}
 
 #pyInputPane {
   text-align: center;
@@ -109,14 +164,13 @@ body {
 
 
 #pyOutputPane {
-  padding: 15px;
-  
     
   /* Code */
   #pyCodeOutputDiv {
-    max-width: 550px;
-    max-height: 620px;
+    width: 80%;
+    max-height: 600px;
     overflow: auto;
+    .frame;
     /*margin-bottom: 4px;*/
 
     table#pyCodeOutput {
@@ -124,11 +178,8 @@ body {
       font-size:12pt;
       line-height:1.1em;
       border-spacing: 0px;
-      border-top: 1px solid #999999;
       padding-top: 3px;
-      border-bottom: 1px solid #999999;
       margin-top: 6px;
-
 
       /* don't wrap lines within code output ... FORCE scrollbars to appear */
       td {
@@ -156,7 +207,6 @@ body {
 
   }
 
-
   /* Code buttons  */
   #editCodeLinkDiv {
     text-align: center;
@@ -177,364 +227,372 @@ body {
   }
 
   #vcrControls {
-    margin-top: 10px;
-    margin-bottom: 15px;
-
+    display:inline;
+    margin-top:5px;
+    color:#555;
     button {
       margin-left: 5px;
       margin-right: 5px;
     }
   }
 
-
   /* Code output */
   #pyStdout {
-    border: 1px solid #999999;
     font-size: 12pt;
     padding: 4px;
     font-family: Andale mono, monospace;
+    .frame;
   }
 
 
   /* Vizualization styles */
-  .frameDataViz {
-
-    border-spacing: 0px;
-    font-size: 12pt;
-    margin-top: 5px;
-    margin-left: 15px;
-    background-color: #dddddd;
-    padding: 5px;
-
-    td.varname {
-      text-align: right;
-      padding: 5px;
-      padding-right: 8px;
-      border-right: 1px dashed #888888;
-    }
-
-    td.val {
-      padding-left: 8px;
-      padding-right: 5px;
-
-      padding-top: 8px;
-      padding-bottom: 8px;
-    }
-
-  }
-
-  .vizFrame {
-    margin-bottom: 20px;
-    padding-left: 8px;
-    border-left: 2px solid #cccccc;
-  }
-
   #dataViz {
 
-    margin-left: 30px;
+    .frame;
+    overflow:scroll;
+    max-height:400px;
 
-    td#stack_td, td#heap_td {
-      vertical-align:top;
+    .frameDataViz {
+
+      border-spacing: 0px;
       font-size: 12pt;
-    }
-
-    .nullObj {
-      color: #555555;
-    }
-
-    .numberObj {
-    }
-
-    .boolObj {
-    }
-
-    .stringObj {
-      /* don't add a color since strings need to be rendered against various backgrounds */
-      font-family: Andale mono, monospace;
-    }
-
-    .keyObj {
-    }
-
-    .customObj {
-      font-family: Andale mono, monospace;
-      /*font-style: italic;*/
-      font-size: 10pt;
-    }
-
-
-    .retval,
-    .returnWarning {
-      font-size: 9pt;
-    }
-
-    .returnWarning {
-      padding-top: 10px;
-      color: #9d1e18;
-    }
-
-
-    table.listTbl {
-      border: 0px solid black;
-      background-color: #F5F798;
-      border-spacing: 0px;
-    }
-
-    table.tupleTbl {
-      background-color: #dddddd; /* must match .frameDataViz background-color */
-      border-spacing: 0px;
-      color: black;
-
-      border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
-      border-top: 1px solid #555555; /* must match td.tupleHeader border */
-      border-right: 1px solid #555555; /* must match td.tupleHeader border */
-    }
-
-    table.listTbl td.listHeader,
-    table.tupleTbl td.tupleHeader {
-      padding-left: 5px;
-      padding-top: 3px;
-      font-size: 8pt;
-      color: #666666;
-      text-align: left;
-      border-left: 1px solid #555555;
-    }
-
-    table.listTbl td.listElt {
-      border-bottom: 1px solid #555555; /* must match td.listHeader border */
-      border-left: 1px solid #555555; /* must match td.listHeader border */
-    }
-
-    table.tupleTbl td.tupleElt {
-      border-left: 1px solid #555555; /* must match td.tupleHeader border */
-    }
-
-    table.listTbl td.listElt,
-    table.tupleTbl td.tupleElt {
-      padding-top: 0px;
-      padding-bottom: 8px;
-      padding-left: 10px;
-      padding-right: 10px;
-      vertical-align: bottom;
-    }
-
-    table.setTbl {
-      border: 1px solid black;
-      /*background-color: #F4F776;*/ /*slightly brighter than #F5F798 */
-      background-color: #F5F798;
-      border-spacing: 0px;
-      text-align: center;
-    }
-
-    table.setTbl td.setElt {
-      padding: 8px;
-    }
-
-
-    table.dictTbl {
-      border-collapse: collapse;
-      border-spacing: 2px;
-    }
-
-    table.dictTbl tr.dictEntry {
-      border: 1px #111111 solid;
-    }
-
-    table.dictTbl td.dictKey {
-      background-color: #41507A;
-    }
-
-    table.dictTbl,
-    table.dictTbl td.dictVal {
-      background-color: #899CD1;
-    }
-
-
-    table.classTbl {
+      margin-top: 5px;
+      margin-left: 15px;
       background-color: #dddddd;
-      border-collapse: collapse;
-      border-spacing: 2px;
+      padding: 5px;
+
+      td.varname {
+        text-align: right;
+        padding: 5px;
+        padding-right: 8px;
+        border-right: 1px dashed #888888;
+      }
+
+      td.val {
+        padding-left: 8px;
+        padding-right: 5px;
+
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
     }
 
-    table.classTbl tr.classEntry {
-      border: 1px #777777 solid;
-    }
-
-    table.classTbl td.classKey {
-      background-color: #222222;
-    }
-
-    table.classTbl td.classVal {
-      background-color: #ffffff;
-    }
-
-
-    table.instTbl {
-      border-collapse: collapse;
-      border-spacing: 2px;
-    }
-
-    table.instTbl tr.instEntry {
-      border: 1px #111111 solid;
-    }
-
-    table.instTbl td.instKey {
-      background-color: #41507A;
-      color: #ffffff;
-    }
-
-    table.instTbl,
-    table.instTbl td.instVal {
-      background-color: #FFFFDD; /* must match color of table.instTbl */
-    }
-
-    table.dictTbl td.dictKey,
-    table.classTbl td.classKey,
-    table.instTbl td.instKey {
-      color: #dddddd;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 10px;
-      padding-right: 8px;
-      text-align: right;
-      vertical-align: center;
-    }
-
-    table.dictTbl td.dictVal,
-    table.classTbl td.classVal,
-    table.instTbl td.instVal {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-right: 10px;
+    .vizFrame {
+      margin-bottom: 20px;
       padding-left: 8px;
-      vertical-align: center;
+      border-left: 2px solid #cccccc;
     }
 
+    #stackHeapTable {
+      
+      #stack_td {
+        vertical-align:top;
+        font-size: 12pt;
+        
+        #stack {
+          float: left;
+          padding-left: 10px;
+          padding-right: 30px;
+          border-right: 1px dashed #bbbbbb;
+
+          #stackHeader {
+            margin-bottom: 15px;
+            text-align: right;
+            color: #333333;
+            font-size: 10pt;
+          }
+        }
+      }
+      
+      
+      #heap_td {
+        vertical-align:top;
+        font-size: 12pt;
+
+        #heap {
+          float: left;
+          padding-left: 30px;
+
+          #heapHeader {
+            margin-top: 2px;
+            margin-bottom: 13px;
+            color: #333333;
+            font-size: 10pt;
+          }
+        }
+      }
+
+      .nullObj {
+        color: #555555;
+      }
+
+      .numberObj {
+      }
+
+      .boolObj {
+      }
+
+      .stringObj {
+        /* don't add a color since strings need to be rendered against various backgrounds */
+        font-family: Andale mono, monospace;
+      }
+
+      .keyObj {
+      }
+
+      .customObj {
+        font-family: Andale mono, monospace;
+        /*font-style: italic;*/
+        font-size: 10pt;
+      }
+
+
+      .retval,
+      .returnWarning {
+        font-size: 9pt;
+      }
+
+      .returnWarning {
+        padding-top: 10px;
+        color: #9d1e18;
+      }
+
+
+      table.listTbl {
+        border: 0px solid black;
+        background-color: #F5F798;
+        border-spacing: 0px;
+      }
+
+      table.tupleTbl {
+        background-color: #dddddd; /* must match .frameDataViz background-color */
+        border-spacing: 0px;
+        color: black;
+
+        border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
+        border-top: 1px solid #555555; /* must match td.tupleHeader border */
+        border-right: 1px solid #555555; /* must match td.tupleHeader border */
+      }
+
+      table.listTbl td.listHeader,
+      table.tupleTbl td.tupleHeader {
+        padding-left: 5px;
+        padding-top: 3px;
+        font-size: 8pt;
+        color: #666666;
+        text-align: left;
+        border-left: 1px solid #555555;
+      }
+
+      table.listTbl td.listElt {
+        border-bottom: 1px solid #555555; /* must match td.listHeader border */
+        border-left: 1px solid #555555; /* must match td.listHeader border */
+      }
+
+      table.tupleTbl td.tupleElt {
+        border-left: 1px solid #555555; /* must match td.tupleHeader border */
+      }
+
+      table.listTbl td.listElt,
+      table.tupleTbl td.tupleElt {
+        padding-top: 0px;
+        padding-bottom: 8px;
+        padding-left: 10px;
+        padding-right: 10px;
+        vertical-align: bottom;
+      }
+
+      table.setTbl {
+        border: 1px solid black;
+        /*background-color: #F4F776;*/ /*slightly brighter than #F5F798 */
+        background-color: #F5F798;
+        border-spacing: 0px;
+        text-align: center;
+      }
+
+      table.setTbl td.setElt {
+        padding: 8px;
+      }
+
+
+      table.dictTbl {
+        border-collapse: collapse;
+        border-spacing: 2px;
+      }
+
+      table.dictTbl tr.dictEntry {
+        border: 1px #111111 solid;
+      }
+
+      table.dictTbl td.dictKey {
+        background-color: #41507A;
+      }
+
+      table.dictTbl,
+      table.dictTbl td.dictVal {
+        background-color: #899CD1;
+      }
+
+
+      table.classTbl {
+        background-color: #dddddd;
+        border-collapse: collapse;
+        border-spacing: 2px;
+      }
+
+      table.classTbl tr.classEntry {
+        border: 1px #777777 solid;
+      }
+
+      table.classTbl td.classKey {
+        background-color: #222222;
+      }
+
+      table.classTbl td.classVal {
+        background-color: #ffffff;
+      }
+
+
+      table.instTbl {
+        border-collapse: collapse;
+        border-spacing: 2px;
+      }
+
+      table.instTbl tr.instEntry {
+        border: 1px #111111 solid;
+      }
+
+      table.instTbl td.instKey {
+        background-color: #41507A;
+        color: #ffffff;
+      }
+
+      table.instTbl,
+      table.instTbl td.instVal {
+        background-color: #FFFFDD; /* must match color of table.instTbl */
+      }
+
+      table.dictTbl td.dictKey,
+      table.classTbl td.classKey,
+      table.instTbl td.instKey {
+        color: #dddddd;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 8px;
+        text-align: right;
+        vertical-align: center;
+      }
+
+      table.dictTbl td.dictVal,
+      table.classTbl td.classVal,
+      table.instTbl td.instVal {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        padding-left: 8px;
+        vertical-align: center;
+      }
 
 
 
-    .typeLabel {
-      font-size: 8pt;
-      color: #222222;
-      margin-bottom: 1px;
+
+      .typeLabel {
+        font-size: 8pt;
+        color: #222222;
+        margin-bottom: 1px;
+      }
+
+      td.dictKey .typeLabel {
+        color: #eeeeee;
+      }
+
+      .circRefLabel {
+        font-size: 10pt;
+        color: #222222;
+      }
+
+
+
+
+
+
+      /* new stuff added for Online Python Tutor "2.0" release */
+
+
+      div.stackFrame {
+        background-color: #ffffff;
+        margin-bottom: 15px;
+        padding: 2px;
+        padding-left: 6px;
+        padding-right: 6px;
+        padding-bottom: 4px;
+        font-size: 11pt;
+        border-left: 1px solid #999999;
+      }
+
+      /* apply to the currently selected stack frame (e.g., on mouse hover) */
+      div.selectedStackFrame {
+        background-color: #dddddd;
+      }
+
+      div.topStackFrame {
+        border-left: 1px solid #F15149;
+      }
+
+      div.stackFrameHeader {
+        font-family: Andale mono, monospace;
+        font-size: 10pt;
+        margin-top: 4px;
+        margin-bottom: 3px;
+      }
+
+      div.inactiveStackFrameHeader {
+        /* simulate a hyperlink */
+        text-decoration: underline;
+        color: #3D58A2;
+        cursor: pointer;
+      }
+
+      td.stackFrameVar {
+        text-align: right;
+        padding-right: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
+
+      td.stackFrameValue {
+        text-align: left;
+        border-bottom: 1px solid #aaaaaa;
+        border-left: 1px solid #aaaaaa;
+
+        padding-top: 3px;
+        padding-left: 3px;
+        padding-bottom: 3px;
+      }
+
+      .stackFrameVarTable tr {
+
+      }
+
+      .stackFrameVarTable {
+        text-align: right;
+        padding-top: 3px;
+
+        /* right-align the table */
+        margin-left: auto;
+        margin-right: 0px;
+      }
+      
     }
-
-    td.dictKey .typeLabel {
-      color: #eeeeee;
-    }
-
-    .circRefLabel {
-      font-size: 10pt;
-      color: #222222;
-    }
-
-
-
-
-
-
-    /* new stuff added for Online Python Tutor "2.0" release */
-
-    div#stack {
-      float: left;
-      padding-left: 10px;
-      padding-right: 30px;
-      border-right: 1px dashed #bbbbbb;
-    }
-
-    div.stackFrame {
-      background-color: #ffffff;
-      margin-bottom: 15px;
-      padding: 2px;
-      padding-left: 6px;
-      padding-right: 6px;
-      padding-bottom: 4px;
-      font-size: 11pt;
-      border-left: 1px solid #999999;
-    }
-
-    /* apply to the currently selected stack frame (e.g., on mouse hover) */
-    div.selectedStackFrame {
-      background-color: #dddddd;
-    }
-
-    div.topStackFrame {
-      border-left: 1px solid #F15149;
-    }
-
-    div.stackFrameHeader {
-      font-family: Andale mono, monospace;
-      font-size: 10pt;
-      margin-top: 4px;
-      margin-bottom: 3px;
-    }
-
-    div.inactiveStackFrameHeader {
-      /* simulate a hyperlink */
-      text-decoration: underline;
-      color: #3D58A2;
-      cursor: pointer;
-    }
-
-    td.stackFrameVar {
-      text-align: right;
-      padding-right: 8px;
-      padding-top: 3px;
-      padding-bottom: 3px;
-    }
-
-    td.stackFrameValue {
-      text-align: left;
-      border-bottom: 1px solid #aaaaaa;
-      border-left: 1px solid #aaaaaa;
-
-      padding-top: 3px;
-      padding-left: 3px;
-      padding-bottom: 3px;
-    }
-
-    .stackFrameVarTable tr {
-
-    }
-
-    .stackFrameVarTable {
-      text-align: right;
-      padding-top: 3px;
-
-      /* right-align the table */
-      margin-left: auto;
-      margin-right: 0px;
-    }
-
-    div#heap {
-      float: left;
-      padding-left: 30px;
-    }
-
+    
     div.heapObject {
       margin-bottom: 15px;
       padding-left: 7px; /* leave some room for connector endpoints */
     }
 
-    div#stackHeader {
-      margin-bottom: 15px;
-      text-align: right;
-    }
-
-    div#heapHeader {
-      margin-top: 2px;
-      margin-bottom: 13px;
-    }
-
-    div#stackHeader,
-    div#heapHeader {
-      color: #333333;
-      font-size: 10pt;
-    }
-
   }
-
-
 }
 
 

@@ -58,7 +58,7 @@ $(document).ready(function() {
     // nothing to visualize:
     if (!curTrace) {
       appMode = 'edit';
-      $.bbq.pushState({ mode: 'edit' });
+      $.bbq.pushState({ mode: appMode });
     }
 
 
