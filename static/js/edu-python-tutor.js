@@ -39,6 +39,7 @@ function enterVisualizeMode(traceData) {
 
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
+  get_examples();
 
   $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
 
@@ -111,101 +112,103 @@ $(document).ready(function() {
 
 
   // canned examples
+  function get_examples() {
+    $("#tutorialExampleLink").click(function() {
+      $.get("/static/example-code/py_tutorial.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
 
-  $("#tutorialExampleLink").click(function() {
-    $.get("/static/example-code/py_tutorial.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#strtokExampleLink").click(function() {
-    $.get("/static/example-code/strtok.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#fibonacciExampleLink").click(function() {
-    $.get("/static/example-code/fib.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#memoFibExampleLink").click(function() {
-    $.get("/static/example-code/memo_fib.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#factExampleLink").click(function() {
-    $.get("/static/example-code/fact.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#filterExampleLink").click(function() {
-    $.get("/static/example-code/filter.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#insSortExampleLink").click(function() {
-    $.get("/static/example-code/ins_sort.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#aliasExampleLink").click(function() {
-    $.get("/static/example-code/aliasing.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#newtonExampleLink").click(function() {
-    $.get("/static/example-code/sqrt.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#oopSmallExampleLink").click(function() {
-    $.get("/static/example-code/oop_small.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#mapExampleLink").click(function() {
-    $.get("/static/example-code/map.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#oop1ExampleLink").click(function() {
-    $.get("/static/example-code/oop_1.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#oop2ExampleLink").click(function() {
-    $.get("/static/example-code/oop_2.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#inheritanceExampleLink").click(function() {
-    $.get("/static/example-code/oop_inherit.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#sumExampleLink").click(function() {
-    $.get("/static/example-code/sum.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#pwGcdLink").click(function() {
-    $.get("/static/example-code/wentworth_gcd.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#pwSumListLink").click(function() {
-    $.get("/static/example-code/wentworth_sumList.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#towersOfHanoiLink").click(function() {
-    $.get("/static/example-code/towers_of_hanoi.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-  
-  $("#pwTryFinallyLink").click(function() {
-    $.get("/static/example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
+    $("#strtokExampleLink").click(function() {
+      $.get("/static/example-code/strtok.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#fibonacciExampleLink").click(function() {
+      $.get("/static/example-code/fib.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#memoFibExampleLink").click(function() {
+      $.get("/static/example-code/memo_fib.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#factExampleLink").click(function() {
+      $.get("/static/example-code/fact.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#filterExampleLink").click(function() {
+      $.get("/static/example-code/filter.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#insSortExampleLink").click(function() {
+      $.get("/static/example-code/ins_sort.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#aliasExampleLink").click(function() {
+      $.get("/static/example-code/aliasing.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#newtonExampleLink").click(function() {
+      $.get("/static/example-code/sqrt.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#oopSmallExampleLink").click(function() {
+      $.get("/static/example-code/oop_small.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#mapExampleLink").click(function() {
+      $.get("/static/example-code/map.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#oop1ExampleLink").click(function() {
+      $.get("/static/example-code/oop_1.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#oop2ExampleLink").click(function() {
+      $.get("/static/example-code/oop_2.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#inheritanceExampleLink").click(function() {
+      $.get("/static/example-code/oop_inherit.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#sumExampleLink").click(function() {
+      $.get("/static/example-code/sum.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#pwGcdLink").click(function() {
+      $.get("/static/example-code/wentworth_gcd.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#pwSumListLink").click(function() {
+      $.get("/static/example-code/wentworth_sumList.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#towersOfHanoiLink").click(function() {
+      $.get("/static/example-code/towers_of_hanoi.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+
+    $("#pwTryFinallyLink").click(function() {
+      $.get("/static/example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
+      return false;
+    });
+  }
+
 
 
   // select an example on start-up:
