@@ -131,48 +131,56 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 
     <div id="pyOutputPane">
-      <div id="CODE" class="half-width">
+      <div id="leftPanel" class="half-width">
         
-        <div id="pyCodeHeader" class="frame-header">
-          <h3>Text Editor</h3>
-          <div class="pull-right">
-            <div id="vcrControls">
-              <button id="jmpFirstInstr", type="button">&lt;&lt;</button>
-              <button id="jmpStepBack", type="button">&lt;</button>
-              <span id="curInstr">? of ?</span>
-              <button id="jmpStepFwd", type="button"> &gt;</button>
-              <button id="jmpLastInstr", type="button">&gt;&gt;</button>
-              &nbsp;| &nbsp;
-              <button id="editBtn", type="button">Run</button>
+        <div id="codeDiv">
+          <div id="pyCodeHeader" class="frame-header">
+            <h3>Text Editor</h3>
+            <div class="pull-right">
+              <div id="vcrControls">
+                <button id="jmpFirstInstr", type="button">&lt;&lt;</button>
+                <button id="jmpStepBack", type="button">&lt;</button>
+                <span id="curInstr">? of ?</span>
+                <button id="jmpStepFwd", type="button"> &gt;</button>
+                <button id="jmpLastInstr", type="button">&gt;&gt;</button>
+                &nbsp;| &nbsp;
+                <button id="editBtn", type="button">Run</button>
+              </div>
             </div>
           </div>
-        </div>
         
-        <div id="pyCodeOutputDiv">
-          <table id="pyCodeOutput"></table>
-        </div>
+          <div id="pyCodeOutputDiv">
+            <table id="pyCodeOutput"></table>
+          </div>
 
-        <div id="errorOutput"></div>
-        <input type="checkbox" id="classicModeCheckbox"/> older browser
+          <div id="errorOutput"></div>
+        </div>
       </div>
       
-      <div id="VIZZ" class="half-width">
-        <div id="vizHeader" class="frame-header">
-          <h3>Stack &amp; Heap Visualization</h3>
-          <div class="pull-right">
-            <select id="stack_growth_selector">
-              <option>down</option>
-              <option>up</option>
-            </select>
+      <div id="rightPanel" class="half-width">
+        
+        <div id="vizDiv">
+          <div id="vizHeader" class="frame-header">
+            <h3>Stack &amp; Heap Visualization</h3>
+            <div class="pull-right">
+              <select id="stack_growth_selector">
+                <option>down</option>
+                <option>up</option>
+              </select>
+              <input type="checkbox" id="classicModeCheckbox"/> 
+              <span style="color:#555;"> slow</span>
+            </div>
           </div>
+        
+          <div id="dataViz"></div>
         </div>
         
-        <div id="dataViz"></div>
-        
-        <div id="pyStdoutHeader" class="frame-header">
+        <div id="stdoutDiv">
+          <div id="pyStdoutHeader" class="frame-header">
           <h3>Standard Output</h3>
         </div>
-        <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
+          <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
+        </div>
       </div>
 
     <!-- <div id="footer">
