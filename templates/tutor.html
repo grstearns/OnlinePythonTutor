@@ -35,6 +35,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <script type="text/javascript" src="static/js/jquery.jsPlumb-1.3.9-all-min.js "></script>
   <!-- disable autogrow for simplicity <script type="text/javascript" src="jquery.autogrow.js"></script>-->
 
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="static/css/codemirror.css">
+  <script src="static/js/codemirror.js"></script>
+  <script src="static/js/codemirror-javascript.js"></script>
+
+
+
   <!-- my own code -->
   <script type="text/javascript" src="static/js/edu-python.js"></script>
   <script type="text/javascript" src="static/js/edu-python-tutor.js"></script>
@@ -58,65 +65,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div id="pyInputPane">
     
     <div id="CODE-INPUT" class="half-width">
-      Write your Python code here:
-      <br/>
-      <textarea class="codeInputPane" id="pyInput" cols="55" rows="20" wrap="off"></textarea>
+      <div id="codeBox">
+        <form>
+          <textarea id="codeInputPane" name="codemiror-code" id="pyInput"></textarea>
+        </form>
+      </div>
       <button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
-  
-      <p style="margin-top: 25px;">
-        Try these small examples:<br/>
-        <a id="tutorialExampleLink" href="#">intro</a> |
-        <a id="factExampleLink" href="#">factorial</a> |
-        <a id="fibonacciExampleLink" href="#">fibonacci</a> |
-        <a id="memoFibExampleLink" href="#">memoized fib</a> |
-        <a id="newtonExampleLink" href="#">square root</a> |
-        <a id="insSortExampleLink" href="#">insertion sort</a>
-      </p>    
+      <p style="margin-top: 25px;"> <a id="tutorialExampleLink" href="#">intro</a> | <a id="factExampleLink" href="#">factorial</a> | <a id="fibonacciExampleLink" href="#">fibonacci</a> | <a id="memoFibExampleLink" href="#">memoized fib</a> | <a id="newtonExampleLink" href="#">square root</a> | <a id="insSortExampleLink" href="#">insertion sort</a></p>
+    </div>
+    
+    <div id="code-mirror" class="half-width">
     </div>
 
-    <!--
-      <br/>
-      <a id="filterExampleLink" href="#">filter</a> |
-      <a id="strtokExampleLink" href="#">tokenize</a> |
-      <a id="oopSmallExampleLink" href="#">OOP</a> |
-      <a id="pwGcdLink" href="#">gcd</a> |
-      <a id="pwSumListLink" href="#">sumList</a> |
-      <a id="towersOfHanoiLink" href="#">towers of hanoi</a> |
-      <a id="pwTryFinallyLink" href="#">exceptions</a>
-
-      </p>
-
-      <p style="margin-top: 25px;">Examples from the MIT 
-      <a href="http://mit.edu/6.01/">6.01</a> course:<br/>
-
-      <a id="mapExampleLink" href="#">list map</a> |
-      <a id="sumExampleLink" href="#">summation</a> |
-      <a id="oop1ExampleLink" href="#">OOP 1</a> |
-      <a id="oop2ExampleLink" href="#">OOP 2</a> |
-      <a id="inheritanceExampleLink" href="#">inheritance</a>
-
-      </p>
-
-      <p style="margin-top: 25px;">
-        Then try some sample programming questions:<br/>
-        Solve:
-        <a href="question.html?two-sum">Two-sum</a> |
-        <a href="question.html?reverse">Reverse list</a> |
-        <a href="question.html?remove-dups">Remove duplicate chars</a>
-
-        <br/>Debug:
-        <a href="question.html?debug-ireverse">In-place reverse</a> |
-        <a href="question.html?debug-bsearch">Binary search</a> |
-        <a href="question.html?debug-mergesort">Mergesort</a>
-
-        <br/>Optimize:
-
-        <a href="question.html?optimize-sum">Greatest sum</a> |
-        <a href="question.html?optimize-find-dups">Find duplicates</a> |
-        <a href="question.html?optimize-search">List search</a>
-
-      </p> 
-    -->
   </div>
 
     <div id="pyOutputPane">
@@ -171,29 +131,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
         </div>
       </div>
-
-    <!-- <div id="footer">
-      <p/>
-      This application supports the core <a
-      href="http://www.python.org/doc/2.5/">Python 2.5</a> language, with no
-      module imports or file I/O.  It's meant to be used as a platform for
-      creating programming tutorials, not for running or debugging
-      production code.
-
-      <p style="margin-top: 8px;"/>Official Python 3 support is coming soon;
-      for now, try the Python 3 forks by <a
-      href="http://cscircles.cemc.uwaterloo.ca/visualize/">CS Circles</a> and
-      <a href="http://netserv.ict.ru.ac.za/python3_viz/">Peter Wentworth</a>.
-
-      <p style="margin-top: 8px;"/> 
-      Check out the <a
-      href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
-      repository and send bug reports, feedback, and suggestions to philip@pgbovine.net
-
-      <p style="margin-top: 8px;"/>
-      Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
-    </div> -->
-
 </body>
 </html>
 

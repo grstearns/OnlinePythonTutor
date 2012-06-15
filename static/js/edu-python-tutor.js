@@ -36,11 +36,30 @@ function enterVisualizeMode(traceData) {
   $.bbq.pushState({ mode: 'visualize' });
 }
 
+function setupCodeMirror(){
+  var textarea = document.getElementById("codeInputPane");
+  
+  window.editor = CodeMirror.fromTextArea(textarea, 
+    {
+      mode: "javascript",
+      lineNumbers: true,
+      lineWrapping: true,
+      onCursorActivity: function() {
+        editor.setLineClass(hlLine, null, null);
+        hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+      }
+    });
+    
+  var hlLine = window.editor.setLineClass(0, "activeline");
+  
+}
+
 
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
   get_examples();
-
+  setupCodeMirror();
+  
   $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
 
 
@@ -95,11 +114,13 @@ $(document).ready(function() {
     $('#executeBtn').html("Please wait ... processing your code");
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();
-
+    var code = window.editor.getValue();
+    
     $.post("/execute",
-           {user_script : $("#pyInput").val()},
+           {user_script : code},
            function(traceData) {
-             renderPyCodeOutput($("#pyInput").val());
+             var data = window.editor.getValue();
+             renderPyCodeOutput(data);
              enterVisualizeMode(traceData);
            },
            "json");
@@ -114,97 +135,97 @@ $(document).ready(function() {
   // canned examples
   function get_examples() {
     $("#tutorialExampleLink").click(function() {
-      $.get("/static/example-code/py_tutorial.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/py_tutorial.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#strtokExampleLink").click(function() {
-      $.get("/static/example-code/strtok.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/strtok.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#fibonacciExampleLink").click(function() {
-      $.get("/static/example-code/fib.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/fib.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#memoFibExampleLink").click(function() {
-      $.get("/static/example-code/memo_fib.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/memo_fib.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#factExampleLink").click(function() {
-      $.get("/static/example-code/fact.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/fact.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#filterExampleLink").click(function() {
-      $.get("/static/example-code/filter.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/filter.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#insSortExampleLink").click(function() {
-      $.get("/static/example-code/ins_sort.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/ins_sort.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#aliasExampleLink").click(function() {
-      $.get("/static/example-code/aliasing.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/aliasing.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#newtonExampleLink").click(function() {
-      $.get("/static/example-code/sqrt.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/sqrt.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#oopSmallExampleLink").click(function() {
-      $.get("/static/example-code/oop_small.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/oop_small.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#mapExampleLink").click(function() {
-      $.get("/static/example-code/map.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/map.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#oop1ExampleLink").click(function() {
-      $.get("/static/example-code/oop_1.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/oop_1.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#oop2ExampleLink").click(function() {
-      $.get("/static/example-code/oop_2.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/oop_2.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#inheritanceExampleLink").click(function() {
-      $.get("/static/example-code/oop_inherit.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/oop_inherit.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#sumExampleLink").click(function() {
-      $.get("/static/example-code/sum.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/sum.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#pwGcdLink").click(function() {
-      $.get("/static/example-code/wentworth_gcd.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/wentworth_gcd.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#pwSumListLink").click(function() {
-      $.get("/static/example-code/wentworth_sumList.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/wentworth_sumList.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#towersOfHanoiLink").click(function() {
-      $.get("/static/example-code/towers_of_hanoi.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/towers_of_hanoi.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
 
     $("#pwTryFinallyLink").click(function() {
-      $.get("/static/example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
+      $.get("/static/example-code/wentworth_try_finally.txt", function(dat) {window.editor.setValue(dat)});
       return false;
     });
   }
