@@ -82,14 +82,8 @@ $(document).ready(function() {
 
     
     else if (appMode == 'visualize') {
-
-      $('#executeBtn').html("Visualize execution");
-      $('#executeBtn').attr('disabled', false);
-
-
-      // do this AFTER making #pyOutputPane visible, or else
-      // jsPlumb connectors won't render properly
-      processTrace(curTrace /* kinda dumb and redundant */, false);
+      // do this AFTER making #pyOutputPane visible, or else jsPlumb connectors won't render properly
+      processTrace(curTrace, false);
     }
     else {
       assert(false);
@@ -103,9 +97,11 @@ $(document).ready(function() {
   $(window).trigger( "hashchange" );
 
 
-  $("#executeBtn").attr('disabled', false);
+
   $("#executeBtn").click(function() {
-    // $('#executeBtn').html("Please wait ... processing your code");
+    alert('yay')
+    $('#executeBtn').html("Please wait ... processing your code");
+    $("#executeBtn").attr('disabled', true);
     var code = window.editor.getValue();
     
     $.post("/execute",
@@ -113,7 +109,12 @@ $(document).ready(function() {
            function(traceData) {
              var data = window.editor.getValue();
              renderPyCodeOutput(data);
+             enterEditMode();
              enterVisualizeMode(traceData);
+             
+             $('#executeBtn').html("Run");
+             $("#executeBtn").attr('disabled', false);
+             
            },
            "json");
   });
