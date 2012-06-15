@@ -171,26 +171,14 @@ function updateOutput() {
 
   // render VCR controls:
   var totalInstrs = curTrace.length;
-
-  // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
-  // and DON'T highlight any lines of code in the code display
-  if (curInstr == (totalInstrs-1)) {
-    if (instrLimitReached) {
-      $("#vcrControls #curInstr").html("Instruction limit reached");
-    }
-    else {
-      $("#vcrControls #curInstr").html("Program has terminated");
-    }
-  }
-  else {
-    $("#vcrControls #curInstr").html((curInstr + 1) + " of " + (totalInstrs-1));
-  }
-
+  var infoText = (curInstr + 1) + " of " + (totalInstrs-1)
+  $("#vcrControls #curInstr").html(infoText);
   $("#vcrControls #jmpFirstInstr").attr("disabled", false);
   $("#vcrControls #jmpStepBack").attr("disabled", false);
   $("#vcrControls #jmpStepFwd").attr("disabled", false);
   $("#vcrControls #jmpLastInstr").attr("disabled", false);
 
+  // diable VCR controls based on progress
   if (curInstr == 0) {
     $("#vcrControls #jmpFirstInstr").attr("disabled", true);
     $("#vcrControls #jmpStepBack").attr("disabled", true);
@@ -200,43 +188,35 @@ function updateOutput() {
     $("#vcrControls #jmpStepFwd").attr("disabled", true);
   }
 
-
   // render error (if applicable):
-  if (curEntry.event == 'exception' ||
-      curEntry.event == 'uncaught_exception') {
+  if (curEntry.event == 'exception' || curEntry.event == 'uncaught_exception') {
     assert(curEntry.exception_msg);
-
-    if (curEntry.exception_msg == "Unknown error") {
-      $("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
-    }
-    else {
-      $("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
-    }
-
-    $("#errorOutput").show();
-
+    var errorMsg = (curEntry.exception_msg == "Unknown error") ? 'Unknown error: Please email a bug report to philip@pgbovine.net' : htmlspecialchars(curEntry.exception_msg);
+    $("#errorOutput").html(errorMsg).show();
     hasError = true;
-  }
-  else {
-    if (!instrLimitReached) { // ugly, I know :/
+  } else {
+    if (!instrLimitReached) { 
       $("#errorOutput").hide();
     }
   }
+  $("#errorOutput").hide();
 
 
   // render code output:
   if (curEntry.line) {
-    // calculate all lines that have been 'visited' 
-    // by execution up to (but NOT INCLUDING) curInstr:
+    // calculate all lines that have been 'visited' by execution up to (but NOT INCLUDING) curInstr:
     var visitedLinesSet = {}
     for (var i = 0; i < curInstr; i++) {
       if (curTrace[i].line) {
         visitedLinesSet[curTrace[i].line] = true;
       }
     }
-    highlightCodeLine(curEntry.line, visitedLinesSet, hasError,
-                      /* if instrLimitReached, then treat like a normal non-terminating line */
-                      (!instrLimitReached && (curInstr == (totalInstrs-1))));
+    /* if instrLimitReached, then treat like a normal non-terminating line */
+    var visitedLines = Object.keys(visitedLinesSet);
+    $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v), "&#9679;	%N%"  )})
+    
+  
+    highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (!instrLimitReached && (curInstr == (totalInstrs-1))));
   }
 
 

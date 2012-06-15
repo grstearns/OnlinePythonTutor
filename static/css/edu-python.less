@@ -166,13 +166,6 @@ body {
 
 }
 
-#pyInputPane {  
-  #codeBox {
-    background:#fff;
-    margin:5px;
-  }
-}
-
 
 
 #pyOutputPane {
@@ -182,49 +175,38 @@ body {
     height:100%; 
     padding:0 2px 0 5px;
     
+    
     #codeDiv {
       .adjust-height(-44px); height:100%;
       overflow:visible;
       
-      /* Code */
-      #pyCodeOutputDiv {
-        width: 100%; height:100%;
-        overflow: scroll;
+      
+      #codeBox {
+        background:#fff;
         .frame; margin-top:5px;
-        /*margin-bottom: 4px;*/
-
-        table#pyCodeOutput {
-          font-family: Andale mono, monospace;
-          font-size:12pt;
-          line-height:1.1em;
-          border-spacing: 0px;
-          padding-top: 3px;
-          margin-top: 6px;
-
-          /* don't wrap lines within code output ... FORCE scrollbars to appear */
-          td {
-            white-space: nowrap;
-          }
-
-
-          .lineNo {
-            background-color:#FFFFFF;
-            color:#AAAAAA;
-            margin:0;
-            padding:0.2em;
-            padding-right:0.5em;
-            text-align:right;
-            width:2.1em;
-          }
-
-          .cod {
-            /*font-weight: bold;*/
-            margin-left: 3px;
-            padding-left: 7px;
-            text-align: left; /* necessary or else doesn't work properly in IE */
+        height:100%;
+        form {
+          height:inherit;
+          .CodeMirror {
+            &.CodeMirror-wrap {
+              height:inherit;
+              .CodeMirror-scroll {
+                height: 100%;
+                overflow-y: scroll;
+                overflow-x: auto;
+                width: 100%;
+              }
+            } 
           }
         }
-
+        
+      }
+      
+      
+      /* Code */
+      #pyCodeOutputDiv {
+        width: 100%; 
+        overflow: scroll;
       }
 
       /* Code buttons  */

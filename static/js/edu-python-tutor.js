@@ -31,8 +31,7 @@ function enterEditMode() {
 }
 
 function enterVisualizeMode(traceData) {
-  curTrace = traceData; // first assign it to the global curTrace, then
-                        // let jQuery BBQ take care of the rest
+  curTrace = traceData; // first assign it to the global curTrace, then let jQuery BBQ take care of the rest
   $.bbq.pushState({ mode: 'visualize' });
 }
 
@@ -45,13 +44,12 @@ function setupCodeMirror(){
       lineNumbers: true,
       lineWrapping: true,
       onCursorActivity: function() {
-        editor.setLineClass(hlLine, null, null);
-        hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+        window.editor.setLineClass(hlLine, null, null);
+        hlLine = window.editor.setLineClass(editor.getCursor().line, null, "activeline");
       }
     });
     
-  var hlLine = window.editor.setLineClass(0, "activeline");
-  
+  var hlLine = window.editor.setLineClass(0, "activeline");  
 }
 
 
@@ -59,6 +57,8 @@ $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
   get_examples();
   setupCodeMirror();
+  $.get("/static/example-code/py_tutorial.txt", function(dat) {window.editor.setValue(dat)});
+  
   
   $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
 
@@ -80,14 +80,8 @@ $(document).ready(function() {
       $.bbq.pushState({ mode: appMode });
     }
 
-
-    if (appMode == 'edit') {
-      $("#pyInputPane").show();
-      $("#pyOutputPane").hide();
-    }
+    
     else if (appMode == 'visualize') {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
 
       $('#executeBtn').html("Visualize execution");
       $('#executeBtn').attr('disabled', false);
@@ -111,9 +105,7 @@ $(document).ready(function() {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
-    $('#executeBtn').html("Please wait ... processing your code");
-    $('#executeBtn').attr('disabled', true);
-    $("#pyOutputPane").hide();
+    // $('#executeBtn').html("Please wait ... processing your code");
     var code = window.editor.getValue();
     
     $.post("/execute",
@@ -124,11 +116,6 @@ $(document).ready(function() {
              enterVisualizeMode(traceData);
            },
            "json");
-  });
-
-
-  $("#editBtn").click(function() {
-    enterEditMode();
   });
 
 

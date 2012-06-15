@@ -62,23 +62,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </div>
   </div>
 
-  <div id="pyInputPane">
-    
-    <div id="CODE-INPUT" class="half-width">
-      <div id="codeBox">
-        <form>
-          <textarea id="codeInputPane" name="codemiror-code" id="pyInput"></textarea>
-        </form>
-      </div>
-      <button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
-      <p style="margin-top: 25px;"> <a id="tutorialExampleLink" href="#">intro</a> | <a id="factExampleLink" href="#">factorial</a> | <a id="fibonacciExampleLink" href="#">fibonacci</a> | <a id="memoFibExampleLink" href="#">memoized fib</a> | <a id="newtonExampleLink" href="#">square root</a> | <a id="insSortExampleLink" href="#">insertion sort</a></p>
-    </div>
-    
-    <div id="code-mirror" class="half-width">
-    </div>
-
-  </div>
-
     <div id="pyOutputPane">
       <div id="leftPanel" class="half-width">
         
@@ -93,15 +76,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <button id="jmpStepFwd", type="button"> &gt;</button>
                 <button id="jmpLastInstr", type="button">&gt;&gt;</button>
                 &nbsp;| &nbsp;
-                <button id="editBtn", type="button">Run</button>
+                <button id="executeBtn", type="button">Run</button>
               </div>
             </div>
           </div>
         
-          <div id="pyCodeOutputDiv">
-            <table id="pyCodeOutput"></table>
+          <div id="codeBox">
+            <form>
+              <textarea id="codeInputPane" name="codemiror-code" id="pyInput"></textarea>
+            </form>
           </div>
-
           <div id="errorOutput"></div>
         </div>
       </div>
