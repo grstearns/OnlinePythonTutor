@@ -99,7 +99,6 @@ $(document).ready(function() {
 
 
   $("#executeBtn").click(function() {
-    alert('yay')
     $('#executeBtn').html("Please wait ... processing your code");
     $("#executeBtn").attr('disabled', true);
     var code = window.editor.getValue();

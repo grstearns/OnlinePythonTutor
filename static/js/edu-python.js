@@ -199,6 +199,8 @@ function updateOutput() {
       $("#errorOutput").hide();
     }
   }
+  
+  // TODO: show error output as a modal box
   $("#errorOutput").hide();
 
 
@@ -213,7 +215,7 @@ function updateOutput() {
     }
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var visitedLines = Object.keys(visitedLinesSet);
-    $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v), "&#9679;	%N%"  )})
+    $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v), "<span class=\"bullet\">&#9679;</span> %N%", 'lineVisited')})
     
   
     highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (!instrLimitReached && (curInstr == (totalInstrs-1))));
