@@ -15,15 +15,9 @@ def execute():
 
 
 
-@app.route('/tutor.html')
-def tutor():
-  return render_template('tutor.html')
-
-
-
 @app.route('/')
 def root():
-  return render_template('index.html')
+  return render_template('tutor.html')
 
 
 
