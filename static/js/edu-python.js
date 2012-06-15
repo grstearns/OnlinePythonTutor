@@ -211,7 +211,7 @@ function updateOutput() {
     }
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var visitedLines = Object.keys(visitedLinesSet);
-    $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v), "<span class=\"bullet\">&#9679;</span> %N%", 'lineVisited')})
+    $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v-1), "<span class=\"bullet\">&#9679;</span> %N%", 'lineVisited')})
 
     $('pre.activeLine').removeClass('activeLine')
     window.editor.setLineClass(curEntry.line-1, "activeLine");
@@ -230,6 +230,12 @@ function updateOutput() {
 
   // finally, render all the data structures!!!
   renderDataStructures(curEntry, "#dataViz");
+}
+
+function clear_editor_markers(){
+  for(var i=0; i< window.editor.lineCount(); i++ ){
+    window.editor.clearMarker(i);
+  }
 }
 
 // Renders the current trace entry (curEntry) into the div named by vizDiv

@@ -43,10 +43,6 @@ function setupCodeMirror(){
       mode: "javascript",
       lineNumbers: true,
       lineWrapping: true,
-      onCursorActivity: function() {
-        window.editor.setLineClass(hlLine, null, null);
-        hlLine = window.editor.setLineClass(editor.getCursor().line, null, "activeline");
-      }
     });
 }
 
@@ -108,10 +104,9 @@ $(document).ready(function() {
              renderPyCodeOutput(data);
              enterEditMode();
              enterVisualizeMode(traceData);
-             
              $('#executeBtn').html("Run");
              $("#executeBtn").attr('disabled', false);
-             
+             clear_editor_markers();
            },
            "json");
   });
