@@ -199,10 +199,6 @@ function updateOutput() {
       $("#errorOutput").hide();
     }
   }
-  
-  // TODO: show error output as a modal box
-  $("#errorOutput").hide();
-
 
   // render code output:
   if (curEntry.line) {
@@ -216,20 +212,19 @@ function updateOutput() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var visitedLines = Object.keys(visitedLinesSet);
     $.each(visitedLines, function(i,v) {window.editor.setMarker(parseInt(v), "<span class=\"bullet\">&#9679;</span> %N%", 'lineVisited')})
+
+    $('pre.activeLine').removeClass('activeLine')
+    window.editor.setLineClass(curEntry.line-1, "activeLine");
     
-  
-    highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (!instrLimitReached && (curInstr == (totalInstrs-1))));
+    //highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (!instrLimitReached && (curInstr == (totalInstrs-1))));
   }
 
 
   // render stdout:
-
   // keep original horizontal scroll level:
   var oldLeft = $("#pyStdout").scrollLeft();
   $("#pyStdout").val(curEntry.stdout);
-
   $("#pyStdout").scrollLeft(oldLeft);
-  // scroll to bottom, tho:
   $("#pyStdout").scrollTop($("#pyStdout").attr('scrollHeight'));
 
 
@@ -1117,6 +1112,9 @@ function eduPythonCommonInit() {
   $("#vcrControls #jmpStepBack").attr("disabled", true);
   $("#vcrControls #jmpStepFwd").attr("disabled", true);
   $("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+  // TODO: show error output as a modal box
+  $("#errorOutput").hide();
 
 
   // set some sensible jsPlumb defaults

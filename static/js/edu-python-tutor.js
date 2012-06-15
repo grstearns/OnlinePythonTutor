@@ -48,8 +48,6 @@ function setupCodeMirror(){
         hlLine = window.editor.setLineClass(editor.getCursor().line, null, "activeline");
       }
     });
-    
-  var hlLine = window.editor.setLineClass(0, "activeline");  
 }
 
 
